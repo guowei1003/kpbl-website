@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md transition-all duration-200 font-medium;
+  }
+  
+  .btn-primary {
+    @apply bg-indigo-600 text-white hover:bg-indigo-700;
+  }
+  
+  .btn-secondary {
+    @apply bg-purple-600 text-white hover:bg-purple-700;
+  }
+  
+  .card {
+    @apply rounded-lg shadow-md overflow-hidden bg-white dark:bg-gray-800;
+  }
+
+  .input {
+    @apply px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100;
+  }
+} 

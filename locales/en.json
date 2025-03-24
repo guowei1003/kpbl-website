@@ -1,0 +1,30 @@
+{
+  "common": {
+    "home": "Home",
+    "rules": "Rules",
+    "language": "Language",
+    "theme": {
+      "light": "Light Mode",
+      "dark": "Dark Mode"
+    },
+    "copy": "Copy",
+    "copied": "Copied",
+    "likes": "Likes",
+    "author": "Author",
+    "publishTime": "Published",
+    "tags": "Tags"
+  },
+  "home": {
+    "heroTitle": "Capybara Rules",
+    "heroSubtitle": "A platform to share and discover various rules",
+    "browseCta": "Browse Rules"
+  },
+  "rules": {
+    "allRules": "All Rules",
+    "search": "Search Rules",
+    "popular": "Popular Rules",
+    "latest": "Latest Rules",
+    "noRules": "No Rules Found",
+    "categories": "Categories"
+  }
+} 
