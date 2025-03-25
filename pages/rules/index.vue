@@ -2,15 +2,15 @@
   <div class="rules-page">
     <div class="page-header mb-10">
       <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{ locale === 'zh' ? '所有规则' : 'All Rules' }}</h1>
-      <p class="text-lg text-gray-600 dark:text-gray-400 mt-2">
+      <!-- <p class="text-lg text-gray-600 dark:text-gray-400 mt-2">
         {{ locale === 'zh' ? '搜索规则' : 'Search Rules' }}
-      </p>
+      </p> -->
     </div>
     
     <div class="grid grid-cols-1 lg:grid-cols-4 1xl:grid-cols-6 2xl:grid-cols-8 gap-8">
       <!-- 左侧标签列表 -->
       <div class="lg:col-span-1 1xl:col-span-1 2xl:col-span-1 mb-8 lg:mb-0">
-        <div class="sticky top-24 bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
+        <div class="sticky top-24 bg-white dark:bg-gray-800 rounded-lg shadow-md p-5 border border-gray-200 dark:border-gray-700">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
             {{ locale === 'zh' ? '分类' : 'Categories' }}
           </h3>

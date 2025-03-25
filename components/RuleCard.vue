@@ -1,6 +1,6 @@
 <template>
-  <NuxtLink :to="`/rules/${rule.id}`" class="block">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow p-5 h-full border border-transparent hover:border-indigo-100 dark:hover:border-indigo-900">
+  <!-- <NuxtLink :to="`/rules/${rule.id}`" class="block"> -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow p-5 h-full border border-solid border-gray-200 hover:border-indigo-100 dark:hover:border-indigo-900">
       <div class="flex flex-wrap gap-2 mb-3">
         <span 
           v-for="tag in rule.tags"
@@ -21,9 +21,9 @@
         
         <Icon name="heroicons:clipboard-document"
           @click.prevent="copyContent"
-          class="absolute w-6 h-6 top-2 right-3 p-2 bg-white dark:bg-gray-500 rounded-md shadow-sm text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors z-10"
+          class="absolute w-5 h-5 top-2 right-4 p-2 bg-gray-500 dark:bg-gray-500 rounded-md shadow-sm text-gray-900 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors z-10 cursor-pointer"
           :title="locale === 'zh' ? '复制内容' : 'Copy Content'"
-          />
+        />
         
         <div 
           v-if="showCopyMessage" 
@@ -55,7 +55,7 @@
         </div>
       </div>
     </div>
-  </NuxtLink>
+  <!-- </NuxtLink> -->
 </template>
 
 <script setup lang="ts">
