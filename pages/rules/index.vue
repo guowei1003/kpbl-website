@@ -7,9 +7,9 @@
       </p>
     </div>
     
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-4 1xl:grid-cols-6 2xl:grid-cols-8 gap-8">
       <!-- 左侧标签列表 -->
-      <div class="lg:col-span-1 mb-8 lg:mb-0">
+      <div class="lg:col-span-1 1xl:col-span-1 2xl:col-span-1 mb-8 lg:mb-0">
         <div class="sticky top-24 bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
             {{ locale === 'zh' ? '分类' : 'Categories' }}
@@ -32,7 +32,7 @@
       </div>
       
       <!-- 右侧规则卡片列表 -->
-      <div class="lg:col-span-3">
+      <div class="lg:col-span-3 1xl:col-span-5 2xl:col-span-7">
         <div v-if="loading" class="flex justify-center items-center h-64">
           <div class="text-xl text-gray-500 dark:text-gray-400">{{ locale === 'zh' ? '加载中...' : 'Loading...' }}</div>
         </div>

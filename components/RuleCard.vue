@@ -11,13 +11,33 @@
         </span>
       </div>
       
-      <h3 class="font-semibold text-gray-900 dark:text-white text-lg mb-3 line-clamp-2">
-        {{ rule.description }}
-      </h3>
+      <div class="relative">
+        <div 
+          class="code-content-area dark:text-gray-400 bg-gray-50 dark:bg-gray-700 rounded-md p-4 h-[500px] overflow-auto mb-5"
+          @dblclick="selectContent"
+        >
+          <FormattedContent :content="rule.content" />
+        </div>
+        
+        <button 
+          @click.prevent="copyContent"
+          class="absolute top-2 right-2 p-2 bg-white dark:bg-gray-600 rounded-md shadow-sm text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors z-10"
+          :title="locale === 'zh' ? '复制内容' : 'Copy Content'"
+        >
+          <Icon name="heroicons:clipboard-document" class="w42 h-4" />
+        </button>
+        
+        <div 
+          v-if="showCopyMessage" 
+          class="copy-message fixed top-4 left-4 bg-indigo-600 text-white px-1 rounded-md shadow-lg z-50"
+        >
+          {{ locale === 'zh' ? '已复制到剪贴板' : 'Copied to clipboard' }}
+        </div>
+      </div>
       
-      <p class="text-gray-600 dark:text-gray-300 text-sm mb-5 line-clamp-3">
-        {{ rule.summary }}
-      </p>
+      <h5 class="font-semibold text-gray-900 dark:text-white text-xs mb-3 line-clamp-2">
+        {{ rule.description }}
+      </h5>
       
       <div class="flex justify-between items-center mt-auto">
         <div class="flex items-center space-x-2">
@@ -41,12 +61,15 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import type { Rule } from '~/types'
 
 const props = defineProps<{
   rule: Rule,
   locale?: string
 }>()
+
+const showCopyMessage = ref(false)
 
 // 格式化日期
 function formatDate(dateString: string) {
@@ -56,6 +79,38 @@ function formatDate(dateString: string) {
     month: 'short', 
     day: 'numeric' 
   }).format(date)
+}
+
+// 双击选中内容
+function selectContent(event: MouseEvent) {
+  const selection = window.getSelection()
+  const range = document.createRange()
+  
+  if (event.target instanceof Node) {
+    const container = (event.currentTarget as HTMLElement)
+    range.selectNodeContents(container)
+    selection?.removeAllRanges()
+    selection?.addRange(range)
+  }
+}
+
+// 复制内容
+function copyContent(event: MouseEvent) {
+  event.preventDefault()
+  event.stopPropagation()
+  
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(props.rule.content)
+      .then(() => {
+        showCopyMessage.value = true
+        setTimeout(() => {
+          showCopyMessage.value = false
+        }, 2000)
+      })
+      .catch(err => {
+        console.error('复制失败:', err)
+      })
+  }
 }
 </script>
 
@@ -69,20 +124,36 @@ function formatDate(dateString: string) {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.markdown-content {
+.code-content-area {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  white-space: pre-wrap;
+  word-break: break-word;
   scrollbar-width: thin;
+  scrollbar-color: rgba(100, 100, 100, 0.4) transparent;
 }
 
-.markdown-content::-webkit-scrollbar {
+.code-content-area::-webkit-scrollbar {
   width: 4px;
 }
 
-.markdown-content::-webkit-scrollbar-track {
+.code-content-area::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.markdown-content::-webkit-scrollbar-thumb {
+.code-content-area::-webkit-scrollbar-thumb {
   background: rgba(100, 100, 100, 0.4);
   border-radius: 2px;
+}
+
+.copy-message {
+  animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
 }
 </style> 
