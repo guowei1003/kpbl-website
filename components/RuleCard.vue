@@ -19,17 +19,15 @@
           <FormattedContent :content="rule.content" />
         </div>
         
-        <button 
+        <Icon name="heroicons:clipboard-document"
           @click.prevent="copyContent"
-          class="absolute top-2 right-2 p-2 bg-white dark:bg-gray-600 rounded-md shadow-sm text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors z-10"
+          class="absolute w-6 h-6 top-2 right-3 p-2 bg-white dark:bg-gray-500 rounded-md shadow-sm text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors z-10"
           :title="locale === 'zh' ? '复制内容' : 'Copy Content'"
-        >
-          <Icon name="heroicons:clipboard-document" class="w42 h-4" />
-        </button>
+          />
         
         <div 
           v-if="showCopyMessage" 
-          class="copy-message fixed top-4 left-4 bg-indigo-600 text-white px-1 rounded-md shadow-lg z-50"
+          class="copy-message fixed top-20 right-8 bg-indigo-600 text-white px-3 py-2 rounded-md shadow-lg z-50"
         >
           {{ locale === 'zh' ? '已复制到剪贴板' : 'Copied to clipboard' }}
         </div>
